@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+.env
+.pytest_cache/
+
+# Model files
+*.pt
+*.pth
+model_weights/
+models/
+
+# Node/Flutter/Dart
+.dart_tool/
+build/
+
+# IDEs and OS
+.vscode/
+.idea/
+.DS_Store
+.directory
+*.iml
+
+# Reports and test outputs
+test_output.txt
+test_results_real_images.json
+test_images/
+reports_storage/
+analysis_storage/
+test_visualizations/

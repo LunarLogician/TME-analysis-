@@ -1,0 +1,20 @@
+flowchart LR
+    UI[Flutter V2] -->|JWT + original image| API[FastAPI /v2]
+    API --> ASSET[Immutable source storage]
+    API --> DB[(Supabase PostgreSQL + RLS)]
+    API --> RQ[Redis / RQ]
+    RQ --> WORKER[Analysis worker]
+    BUNDLE[(TME-Nuclei V2 bundle)] --> WORKER
+    ASSET --> WORKER
+    WORKER --> TILE[QC + scale + overlapping tiles]
+    TILE --> DENSE[7-head TorchScript inference]
+    DENSE --> INST[Watershed + 132-D classifier]
+    INST --> CAL[Pixel/instance fusion + calibration]
+    CAL --> STITCH[Cross-tile stitching]
+    STITCH --> CELLS[Global reviewable cells]
+    CELLS --> DB
+    CELLS --> CONTEXT[Pathologist tumor context / ROI]
+    CONTEXT --> SPATIAL[Physical SpatialEngine]
+    SPATIAL --> POLICY[Versioned TMEPolicy]
+    POLICY --> REPORT[Deterministic report]
+    REPORT --> DB
